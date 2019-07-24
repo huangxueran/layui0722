@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aaa.dao.Empdao">
+    <select id="findAllEmp" resultType="java.util.Map">
+
+      /**
+          关联表  inner  join  on ,我们需要把empno,ename,mgr,job,(sal+comm) 换掉   total 总工资
+          IFNULL(comm,0)    如果第一个表达式为空，我们就让他为0   LEFT JOIN 左连接值的是以aaa为主表
+          宋江  没有上级经理，所以上级经理为空   以aaa括号里面为主表，向mgr 上级经理填充数据
+      */
+
+      /*
+select aaa.*,emp.ename as mgrname from (select empno,ename,mgr,job,(sal+IFNULL(comm,0))
+as total,hiredate,dname from
+ emp inner join dept on emp.deptno=dept.deptno) aaa LEFT JOIN emp on  aaa.mgr=emp.empno;
+ */
+    </select>
+</mapper>
